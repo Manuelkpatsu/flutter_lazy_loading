@@ -3,6 +3,7 @@ import 'package:flutterlazyloading/model/passenger.dart';
 import 'package:flutterlazyloading/repository/passenger_repository.dart';
 import 'package:flutterlazyloading/ui/widgets/exception_indicators/empty_list_indicator.dart';
 import 'package:flutterlazyloading/ui/widgets/exception_indicators/error_indicator.dart';
+import 'package:flutterlazyloading/ui/widgets/passenger_tile.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -61,11 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           pagingController: _pagingController,
           builderDelegate: PagedChildBuilderDelegate<Passenger>(
             itemBuilder: (context, passenger, index) {
-              return ListTile(
-                title: Text(passenger.name ?? 'No name'),
-                subtitle: Text(passenger.airline[0].name),
-                trailing: Text(passenger.airline[0].country),
-              );
+              return PassengerTile(passenger: passenger);
             },
             firstPageErrorIndicatorBuilder: (context) => ErrorIndicator(
               error: _pagingController.error,
