@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: RefreshIndicator(
         onRefresh: () => Future.sync(() => _pagingController.refresh()),
-        child: PagedListView<int, Passenger>(
+        child: PagedListView<int, Passenger>.separated(
           pagingController: _pagingController,
           builderDelegate: PagedChildBuilderDelegate<Passenger>(
             itemBuilder: (context, passenger, index) {
@@ -70,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             noItemsFoundIndicatorBuilder: (context) => const EmptyListIndicator(),
           ),
+          separatorBuilder: (context, index) => const Divider(),
         ),
       ),
     );
